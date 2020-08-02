@@ -18,15 +18,15 @@
     </modules>
 
     <properties>
-        <spring.boot.version>2.1.6.RELEASE</spring.boot.version>
+        <spring.boot.version>2.3.0.RELEASE</spring.boot.version>
         <mockito.version>1.10.19</mockito.version>
         <maven.compiler.source>1.8</maven.compiler.source>
         <maven.compiler.target>1.8</maven.compiler.target>
         <maven.compiler.version>3.8.1</maven.compiler.version>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-        <lombok.version>1.18.10</lombok.version>
-        <commons.collections.version>4.0</commons.collections.version>
-        <log4j.version>2.13.0</log4j.version>
+        <lombok.version>1.18.12</lombok.version>
+        <commons.collections.version>4.1</commons.collections.version>
+        <log4j.version>2.13.2</log4j.version>
     </properties>
 
     <dependencyManagement>
