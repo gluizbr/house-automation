@@ -22,3 +22,5 @@ logging:
   path: ${resources}/logs
   level:
     ROOT: DEBUG
+
+jwt.secret: house-automation-secret20312319
