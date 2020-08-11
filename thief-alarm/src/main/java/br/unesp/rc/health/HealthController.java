@@ -1,4 +1,4 @@
-package br.unesp.rc.controller;
+package br.unesp.rc.health;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -11,5 +11,6 @@ import org.springframework.web.bind.annotation.RestController;
 public class HealthController {
   @ResponseStatus(HttpStatus.OK)
   @GetMapping
-  public void getHealth() {}
+  public void getHealth() {
+  }
 }
