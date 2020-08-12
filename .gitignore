@@ -2,6 +2,7 @@
 /api-gateway/target/**
 /fire-alarm/target/**
 /thief-alarm/target/**
+/common/target/**
 *!.mvn/wrapper/maven-wrapper.jar
 *.jar
 .circleci

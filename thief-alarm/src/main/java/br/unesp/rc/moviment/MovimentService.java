@@ -27,7 +27,7 @@ public class MovimentService {
     if (movimentSensorRepository.findByName(movimentSensor.getName()).isPresent()) {
       return ResponseEntity.badRequest().body("Sensor already exists, update instead");
     }
-    movimentSensor.setLastEventTime(Instant.now());
+    movimentSensor.setLastEventTime(null);
     return ResponseEntity.ok(movimentSensorRepository.save(movimentSensor));
   }
 
@@ -35,8 +35,8 @@ public class MovimentService {
     return movimentSensorRepository.findAll();
   }
 
-  public MovimentSensor findById(String temperatureId) {
-    return movimentSensorRepository.findById(temperatureId).orElseGet(() -> null);
+  public MovimentSensor findById(String movimentId) {
+    return movimentSensorRepository.findById(movimentId).orElseGet(() -> null);
   }
 
   public MovimentSensor update(String temperatureId) {
@@ -46,5 +46,11 @@ public class MovimentService {
       return movimentSensorRepository.save(sensor.get());
     }
     return null;
+  }
+
+  public void clearMovimentSensorState() {
+    List<MovimentSensor> sensors = movimentSensorRepository.findAll();
+    sensors.forEach(sensor -> sensor.setLastEventTime(null));
+    movimentSensorRepository.saveAll(sensors);
   }
 }

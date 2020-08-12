@@ -1,6 +1,7 @@
 package br.unesp.rc.alarm;
 
 import br.unesp.rc.model.thief.Alarm;
+import br.unesp.rc.moviment.MovimentService;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -8,9 +9,11 @@ import java.util.List;
 @Service
 public class AlarmService {
   private final AlarmRepository alarmRepository;
+  private final MovimentService movimentService;
 
-  public AlarmService(AlarmRepository alarmRepository) {
+  public AlarmService(AlarmRepository alarmRepository, final MovimentService movimentService) {
     this.alarmRepository = alarmRepository;
+    this.movimentService = movimentService;
   }
 
   private Alarm create() {
@@ -30,6 +33,7 @@ public class AlarmService {
   }
 
   public Alarm active() {
+    movimentService.clearMovimentSensorState();
     List<Alarm> alarm = alarmRepository.findAll();
     if (alarm.isEmpty()) {
       return create();
@@ -39,6 +43,7 @@ public class AlarmService {
   }
 
   public Alarm deactivate() {
+    movimentService.clearMovimentSensorState();
     List<Alarm> alarm = alarmRepository.findAll();
     if (alarm.isEmpty()) {
       return createDeactivated();

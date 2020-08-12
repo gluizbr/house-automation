@@ -1,12 +1,12 @@
 package br.unesp.rc.central;
 
-import br.unesp.rc.model.thief.ThiefCentral;
+import br.unesp.rc.model.Central;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-@RequestMapping
+@RequestMapping("/central")
 public class CentralController {
   private final CentralService centralService;
 
@@ -15,7 +15,7 @@ public class CentralController {
   }
 
   @GetMapping
-  public ThiefCentral getCentralStatus() {
+  public Central getCentralStatus() {
     return centralService.getState();
   }
 }

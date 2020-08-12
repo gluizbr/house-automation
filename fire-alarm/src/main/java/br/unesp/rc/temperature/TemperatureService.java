@@ -26,6 +26,9 @@ public class TemperatureService {
     if (temperatureSensorRepository.findByName(temperatureSensor.getName()).isPresent()) {
       return ResponseEntity.badRequest().body("Sensor already exists, update instead");
     }
+    if (temperatureSensor.getTemperature() == null) {
+      temperatureSensor.setTemperature(0L);
+    }
     return ResponseEntity.ok(temperatureSensorRepository.save(temperatureSensor));
   }
 

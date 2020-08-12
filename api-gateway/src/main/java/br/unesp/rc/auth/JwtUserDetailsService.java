@@ -11,15 +11,16 @@ import java.util.ArrayList;
 
 @Service
 public class JwtUserDetailsService implements UserDetailsService {
-  private final PasswordEncoder passwordEncoder;
 
-  public JwtUserDetailsService(final PasswordEncoder passwordEncoder) {
+  private PasswordEncoder passwordEncoder;
+
+  public JwtUserDetailsService(PasswordEncoder passwordEncoder) {
     this.passwordEncoder = passwordEncoder;
   }
 
   @Override
   public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-    if ("springuser".equals(username)) {
+    if ("admin".equals(username)) {
       return new User("admin", passwordEncoder.encode("1234"),
           new ArrayList<>());
     } else {

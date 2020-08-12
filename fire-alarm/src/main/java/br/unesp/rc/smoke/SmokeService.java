@@ -27,7 +27,7 @@ public class SmokeService {
     if (smokeSensorRepository.findByName(smokeSensor.getName()).isPresent()) {
       return ResponseEntity.badRequest().body("Sensor already exists, update instead");
     }
-    smokeSensor.setLastEventTime(Instant.now());
+    smokeSensor.setLastEventTime(null);
     return ResponseEntity.ok(smokeSensorRepository.save(smokeSensor));
   }
 
@@ -43,7 +43,7 @@ public class SmokeService {
     Optional<SmokeSensor> sensor = smokeSensorRepository.findById(temperatureId);
     if (sensor.isPresent()) {
       sensor.get().setActive(active);
-      sensor.get().setLastEventTime(Instant.now());
+      sensor.get().setLastEventTime(active ? Instant.now() : null);
       return smokeSensorRepository.save(sensor.get());
     }
     return null;
