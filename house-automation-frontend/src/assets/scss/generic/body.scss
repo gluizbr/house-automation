@@ -1,0 +1,31 @@
+@import '../settings/color-palette';
+@import '../tools/typography';
+
+html {
+  touch-action: manipulation;
+}
+
+body {
+  background-color: $porcelain;
+}
+
+html,
+body,
+#pf-html,
+#pf-body {
+  height: 100%;
+  margin: 0;
+  padding: 0;
+  font-family: Metropolis, 'Helvetica Neue', Helvetica, Arial, sans-serif;
+  -webkit-font-smoothing: antialiased;
+
+  // pf-html and pf-body were added to override some styles applied by Zoom SDK
+  // https://devforum.zoom.us/t/web-sdk-add-inline-styles-to-html-and-body/23375
+  overflow: unset;
+  min-height: unset;
+  min-width: unset;
+}
+
+#pf-body {
+  overflow-x: hidden;
+}

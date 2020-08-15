@@ -1,0 +1,9 @@
+@include font-face('Metropolis', 300, '../../fonts/metropolis-light');
+@include font-face('Metropolis', 400, '../../fonts/metropolis-regular');
+@include font-face('Metropolis', 500, '../../fonts/metropolis-medium');
+@include font-face('Metropolis', 600, '../../fonts/metropolis-semibold');
+
+a { text-decoration: none; }
+
+h3,
+p { margin: 0; }
