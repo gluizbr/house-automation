@@ -1,12 +1,13 @@
-import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-
-
+import { NgModule } from '@angular/core';
+import { CentralRoutingModule } from './central-routing.module';
+import { CentralPageComponent } from './pages/central-page/central-page.component';
 
 @NgModule({
-  declarations: [],
+  declarations: [CentralPageComponent],
   imports: [
-    CommonModule
+    CommonModule,
+    CentralRoutingModule
   ]
 })
 export class CentralModule { }

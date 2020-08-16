@@ -1,0 +1,11 @@
+.app-root {
+  $navbar-height: 60px;
+
+  & > .menu {
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 100%;
+    height: $navbar-height;
+  }
+}
