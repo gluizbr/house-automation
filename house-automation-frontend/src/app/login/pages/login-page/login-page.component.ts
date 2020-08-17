@@ -1,15 +1,52 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
+import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
+import { StorageKeys } from 'src/app/core/enums/storage-keys.enum';
+import { AuthenticateResponse } from 'src/app/core/models/authenticate-response.model';
+import { AuthenticateService } from '../../../core/services/authenticate.service';
+import { StorageService } from '../../../core/services/storage.service';
 
 @Component({
   selector: 'app-login-page',
   templateUrl: './login-page.component.html',
   styleUrls: ['./login-page.component.scss']
 })
-export class LoginPageComponent implements OnInit {
+export class LoginPageComponent {
+  form: FormGroup;
+  username = new FormControl('', [Validators.required]);
+  password = new FormControl('', [Validators.required]);
 
-  constructor() { }
+  constructor(
+    private fb: FormBuilder,
+    private authenticateService: AuthenticateService,
+    private storage: StorageService,
+    private router: Router
+  ) {
+    this.form = this.fb.group({
+      username: this.username,
+      password: this.password
+    })
+  }
 
-  ngOnInit(): void {
+  login(): void {
+    if(this.form.valid) {
+      const username = this.username.value;
+      const password = this.password.value;
+
+      this.authenticateService.login(this.username.value, this.password.value)
+        .subscribe((response: AuthenticateResponse) => {
+          const { token } = response;
+
+          if(!token) {
+            // implement error page or error message
+            console.log('error');
+          }
+
+          this.storage.persist(StorageKeys.tokenKey, token);
+
+          this.router.navigate(['']);   
+        });
+    }
   }
 
 }
