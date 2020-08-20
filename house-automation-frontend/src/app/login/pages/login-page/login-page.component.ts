@@ -1,17 +1,21 @@
-import { Component } from '@angular/core';
+import { Component, HostBinding, ViewEncapsulation } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { StorageKeys } from 'src/app/core/enums/storage-keys.enum';
 import { AuthenticateResponse } from 'src/app/core/models/authenticate-response.model';
-import { AuthenticateService } from '../../../core/services/authenticate.service';
-import { StorageService } from '../../../core/services/storage.service';
+import { AuthenticateService } from '../../../core/services/authenticate/authenticate.service';
+import { StorageService } from '../../../core/services/storage/storage.service';
 
 @Component({
   selector: 'app-login-page',
   templateUrl: './login-page.component.html',
-  styleUrls: ['./login-page.component.scss']
+  styleUrls: ['./login-page.component.scss'],
+  encapsulation: ViewEncapsulation.None
 })
 export class LoginPageComponent {
+  @HostBinding('class.app-login-page')
+  hostClass="true";
+
   form: FormGroup;
   username = new FormControl('', [Validators.required]);
   password = new FormControl('', [Validators.required]);

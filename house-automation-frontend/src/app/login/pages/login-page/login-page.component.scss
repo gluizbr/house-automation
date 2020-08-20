@@ -1,0 +1,16 @@
+@import './login-form.scss';
+
+.app-login-page {
+  & > .container {
+    margin-top: 60px; 
+  }
+
+  & > .container > .toolbar { padding: 32px; }
+
+  & > .container > .content {
+    align-items: center;
+    display: flex;
+    height: calc(100vh - 60px);
+    justify-content: center;
+  }
+}

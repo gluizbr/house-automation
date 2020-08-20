@@ -1,8 +1,8 @@
 import { HttpEvent, HttpHandler, HttpInterceptor, HttpRequest } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import { StorageKeys } from '../enums/storage-keys.enum';
-import { StorageService } from '../services/storage.service';
+import { StorageKeys } from '../../enums/storage-keys.enum';
+import { StorageService } from '../../services/storage/storage.service';
 
 @Injectable()
 export class AuthorizationInterceptor implements HttpInterceptor {

@@ -1,13 +1,14 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import { AuthenticateResponse } from '../models/authenticate-response.model';
+import { AuthenticateResponse } from '../../models/authenticate-response.model';
 
 @Injectable({
   providedIn: 'root'
 })
 export class AuthenticateService {
-  url = 'http://localhost:4000/api';
+  url = 'https://d0d51ec69e60.ngrok.io/api';
+  
   constructor(private readonly http: HttpClient) { }
 
   login(username: string, password: string): Observable<AuthenticateResponse> {
