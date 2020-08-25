@@ -1,9 +1,8 @@
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 import { ReactiveFormsModule } from '@angular/forms';
-import { MatButtonModule } from '@angular/material/button';
 import { MatInputModule } from '@angular/material/input';
-import { MatToolbarModule } from '@angular/material/toolbar';
+import { SharedModule } from '../shared/shared.module';
 import { LoginRoutingModule } from './login-routing.module';
 import { LoginPageComponent } from './pages/login-page/login-page.component';
 
@@ -13,9 +12,8 @@ import { LoginPageComponent } from './pages/login-page/login-page.component';
     CommonModule,
     LoginRoutingModule,
     ReactiveFormsModule,
+    SharedModule,
     MatInputModule,
-    MatToolbarModule,
-    MatButtonModule,
   ]
 })
 export class LoginModule { }

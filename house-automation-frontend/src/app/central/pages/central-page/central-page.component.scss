@@ -1,0 +1,10 @@
+@import './sensors-list.scss';
+
+.app-central-page {
+  & > .container {
+    column-gap: 40px;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    margin-top: 50px;
+  }
+}

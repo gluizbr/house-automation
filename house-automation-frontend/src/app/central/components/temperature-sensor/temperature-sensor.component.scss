@@ -1,0 +1,12 @@
+.app-temperature-sensor {
+  display: grid;
+  grid-template-columns: 1fr auto;
+
+  & > .name {
+    margin-bottom: 4px;
+  }
+
+  & > .temperature {
+    margin-bottom: 0;
+  }
+}

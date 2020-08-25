@@ -1,0 +1,12 @@
+.app-moviment-sensor {
+  display: block;
+
+  & > .name {
+    margin-bottom: 4px;
+  }
+
+  & > .lastEventTime {
+    color: rgba(0, 0, 0, 0.55);
+    display: block;
+  }
+}

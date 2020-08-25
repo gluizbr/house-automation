@@ -1,0 +1,25 @@
+.app-smoke-sensor {
+  display: block;
+
+  & > .name {
+    margin-bottom: 4px;
+  }
+
+  & > .lastEventTime {
+    color: rgba(0, 0, 0, 0.55);
+    display: block;
+  }
+
+  /* Variants */
+  &.-active {
+    background-color: red;
+
+    & > .name {
+      color: white;
+    }
+  
+    & > .lastEventTime {
+      color: rgba(255, 255, 255, 0.55);
+    }
+  }
+}
