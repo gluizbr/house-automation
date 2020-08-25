@@ -1,3 +1,3 @@
-export class AuthenticateResponse {
+export interface AuthenticateResponse {
   token: string;
 }

@@ -7,13 +7,13 @@ import { AuthenticateResponse } from '../../models/authenticate-response.model';
   providedIn: 'root'
 })
 export class AuthenticateService {
-  url = 'https://d0d51ec69e60.ngrok.io/api';
+  url = 'https://6135f1ce0493.ngrok.io';
   
   constructor(private readonly http: HttpClient) { }
 
   login(username: string, password: string): Observable<AuthenticateResponse> {
     const body = { username, password };
     
-    return this.http.post<AuthenticateResponse>(`${this.url}/authenticate`, body);
+    return this.http.post<AuthenticateResponse>(`${this.url}/api/authenticate`, body);
   }
 }

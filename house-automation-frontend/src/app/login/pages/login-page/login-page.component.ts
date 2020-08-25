@@ -1,6 +1,7 @@
 import { Component, HostBinding, ViewEncapsulation } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
+import { take } from 'rxjs/operators';
 import { StorageKeys } from 'src/app/core/enums/storage-keys.enum';
 import { AuthenticateResponse } from 'src/app/core/models/authenticate-response.model';
 import { AuthenticateService } from '../../../core/services/authenticate/authenticate.service';
@@ -37,13 +38,20 @@ export class LoginPageComponent {
       const username = this.username.value;
       const password = this.password.value;
 
-      this.authenticateService.login(this.username.value, this.password.value)
+      this.authenticateService.login(username, password)
+        .pipe(take(1))
         .subscribe((response: AuthenticateResponse) => {
           const { token } = response;
 
           if(!token) {
             // implement error page or error message
             console.log('error');
+          }
+
+          const hasTokenStorage = Boolean(this.storage.retrieve(StorageKeys.tokenKey))
+
+          if(hasTokenStorage) {
+            this.storage.remove(StorageKeys.tokenKey);
           }
 
           this.storage.persist(StorageKeys.tokenKey, token);

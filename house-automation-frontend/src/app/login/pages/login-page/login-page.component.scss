@@ -1,9 +1,7 @@
 @import './login-form.scss';
 
 .app-login-page {
-  & > .container {
-    margin-top: 60px; 
-  }
+  & > .container { margin-top: 60px; }
 
   & > .container > .toolbar { padding: 32px; }
 
