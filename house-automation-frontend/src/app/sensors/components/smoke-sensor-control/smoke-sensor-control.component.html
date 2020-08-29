@@ -1,0 +1,16 @@
+<form
+  class="container"
+  [formGroup]="form">
+  <h3 class="name">{{ sensor.name }}</h3>
+
+  <mat-slide-toggle
+    class="control"
+    [formControl]="control">Sensor de fumaça</mat-slide-toggle>
+
+  <button
+  class="button"
+  mat-raised-button color="primary"
+  (click)="changeSmokeSensorAlarm()">
+    {{ control.value ? 'Ativar Sensor' : 'Desativar Sensor' }}
+  </button>
+</form>

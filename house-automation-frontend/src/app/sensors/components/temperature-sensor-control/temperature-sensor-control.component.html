@@ -1,0 +1,16 @@
+<form class="container" [formGroup]="form">
+  <h3 class="name">{{ sensor.name }}</h3>
+  <mat-slider
+  class="control"
+  thumbLabel
+  tickInterval="1"
+  min="0"
+  max="30"
+  [formControl]="temperature"></mat-slider>
+
+  <h4 class="currentvalue">{{ temperature.value }}</h4>
+  
+  <button class="button" 
+  mat-raised-button color="primary"
+  (click)="changeTemperature()">Alterar Temperatura</button>
+</form>

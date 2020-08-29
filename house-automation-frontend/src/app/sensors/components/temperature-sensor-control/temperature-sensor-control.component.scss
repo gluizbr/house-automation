@@ -1,0 +1,32 @@
+.app-temperature-sensor-control {
+  & > .container {
+    display: grid;
+    grid-template-areas: 'title title title'
+                         'control currentvalue button';
+    grid-template-columns: 1fr 1fr auto;
+    align-items: center;
+    row-gap: 8px;
+  }
+
+  & > .container > .name {
+    grid-area: title;
+    font-size: 20px;
+    font-weight: 500;
+  }
+
+  & > .container > .button {
+    grid-area: button;
+  }
+
+  & > .container > .control {
+    width: 100%;
+    grid-area: control;
+  }
+
+  & > .container > .currentvalue {
+    grid-area: currentvalue;
+    font-size: 24px;
+    justify-self: center;
+    margin: 0;
+  }
+}

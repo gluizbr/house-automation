@@ -1,0 +1,45 @@
+<mat-toolbar class="toolbar" color="primary">
+  <span>Sensores</span>
+</mat-toolbar>
+<div class="container" *ngIf="central">
+    <ng-container *ngIf="central.fireCentral.smokeSensors as smokeSensors">
+      <h3 class="title">Sensor Fumaça</h3>
+      <app-smoke-sensor-control 
+        class="sensor"
+        *ngFor="let smokeSensor of smokeSensors"
+        [sensor]="smokeSensor"></app-smoke-sensor-control>
+        <pre>{{ sensor | json }}</pre>
+    </ng-container>
+
+    <ng-container *ngIf="central.fireCentral.temperatureSensors as temperatureSensors">
+      <h3 class="title">Sensor Temperatura</h3>
+
+      <app-temperature-sensor-control
+        class="sensor"
+        *ngFor="let temperatureSensor of temperatureSensors"
+        [sensor]="temperatureSensor"></app-temperature-sensor-control>
+    </ng-container>
+    
+    <ng-container *ngIf="central.thiefCentral.movimentSensors as movimentSensors">
+      <h3 class="title">Sensor Ladrão</h3>
+      <app-moviment-sensor-control 
+        class="sensor"
+        *ngFor="let movimentSensor of movimentSensors"
+        [sensor]="movimentSensor"
+        [alarmStatus]="central.thiefCentral.alarm.active"></app-moviment-sensor-control>
+    </ng-container>
+</div>
+
+<!-- 
+  TODO (10 points)
+    - Test requests and feedbacks [1point]
+    - Loading on first request data (set true outside the timer and if not false inside then false) [1point]
+    - store (maybe) [3points]
+    - include more info on the central page sensor "cards" (maybe previous temp or media temp, enphasis on the last time that the alarm was activated) [1point]
+    - Modal with the message that some alarm has been activated (with some button to disable)[2points]
+    - Loading on buttons [2points]
+    - Criar logica pra alarme de movimento
+      - Colocar um botão geral que vai ativar o alarme
+      - Ao ativar o alarme exibir um modal que vai falar que a partir de x tempo qualquer movimentação
+      - Ao ter um movimento nos sensores de movimento, dispara um modal que vai avisar o usuario que teve movimento (se ele deseja desativar o alarme ou não) 
+-->

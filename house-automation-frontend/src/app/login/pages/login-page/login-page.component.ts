@@ -4,8 +4,7 @@ import { Router } from '@angular/router';
 import { take } from 'rxjs/operators';
 import { StorageKeys } from 'src/app/core/enums/storage-keys.enum';
 import { AuthenticateResponse } from 'src/app/core/models/authenticate-response.model';
-import { AuthenticateService } from '../../../core/services/authenticate/authenticate.service';
-import { StorageService } from '../../../core/services/storage/storage.service';
+import { AuthenticateService, StorageService } from '../../../core/services';
 
 @Component({
   selector: 'app-login-page',
@@ -38,6 +37,8 @@ export class LoginPageComponent {
       const username = this.username.value;
       const password = this.password.value;
 
+      this.authenticateService.IsLoading();
+
       this.authenticateService.login(username, password)
         .pipe(take(1))
         .subscribe((response: AuthenticateResponse) => {
@@ -55,6 +56,8 @@ export class LoginPageComponent {
           }
 
           this.storage.persist(StorageKeys.tokenKey, token);
+
+          this.authenticateService.notLoading();
 
           this.router.navigate(['']);   
         });

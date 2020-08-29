@@ -1,8 +1,8 @@
 /* You can add global styles to this file, and also import other style files */
+@import '@angular/material/prebuilt-themes/indigo-pink.css';
 @import './assets/scss/generic/body';
 @import './assets/scss/generic/normalize';
 @import './assets/scss/generic/universal';
 @import './assets/scss/elements/typography';
 @import './assets/scss/elements/list';
 @import './assets/scss/objects';
-@import '@angular/material/prebuilt-themes/indigo-pink.css';

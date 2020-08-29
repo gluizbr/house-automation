@@ -1,0 +1,24 @@
+.app-smoke-sensor-control{
+  & > .container {
+    align-items: center;
+    display: grid;
+    grid-template-areas: 'title title title'
+                         'control emptyspace button';
+    grid-template-columns: auto 1fr auto;
+    row-gap: 8px;
+  }
+
+  & > .container > .name {
+    grid-area: title;
+    font-size: 20px;
+    font-weight: 500;
+  }
+    
+  & > .container > .control {
+    grid-area: control;
+  }
+
+  & > .container > .button {
+    grid-area: button;
+  }
+}

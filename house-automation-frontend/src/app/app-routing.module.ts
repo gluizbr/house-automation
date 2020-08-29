@@ -12,7 +12,7 @@ const routes: Routes = [
   {
     path: 'sensores',
     canLoad: [ AuthenticatedGuard ],
-    loadChildren: () => import('./sensores/sensores.module').then(m => m.SensoresModule)
+    loadChildren: () => import('./sensors/sensors.module').then(m => m.SensorsModule)
   },
   {
     path: 'login',

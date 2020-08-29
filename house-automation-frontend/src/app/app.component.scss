@@ -1,11 +1,26 @@
 .app-root {
   $navbar-height: 60px;
+  // position: relative;
 
   & > .menu {
+    height: $navbar-height;
     position: absolute;
     top: 0;
     right: 0;
     width: 100%;
-    height: $navbar-height;
+    z-index: 1;
+  }
+
+  & > .loading {
+    align-items: center;
+    background: white;
+    display: flex;
+    height: 100vh;
+    justify-content: center;
+    left: 0;
+    position: absolute;
+    top: 0;
+    z-index: 2;
+    width: 100vw;
   }
 }

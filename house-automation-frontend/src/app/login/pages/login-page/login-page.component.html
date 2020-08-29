@@ -1,26 +1,24 @@
+<mat-toolbar class="toolbar" color="primary">
+  <span>Login</span>
+</mat-toolbar>
 <div class="container">
-  <mat-toolbar class="toolbar" color="primary">
-    <span>Login</span>
-  </mat-toolbar>
-  <div class="content">
-    <form class="login-form" [formGroup]="form">
-      <mat-form-field class="formfield">
-        <mat-label>Usuário</mat-label>
-        <input type="text" matInput [formControl]="username">
-        <mat-error *ngIf="username.hasError('required')">
-          O usuário é <strong>obrigatório</strong>
-        </mat-error>
-      </mat-form-field>
+  <form class="login-form" [formGroup]="form">
+    <mat-form-field class="formfield">
+      <mat-label>Usuário</mat-label>
+      <input type="text" matInput [formControl]="username">
+      <mat-error *ngIf="username.hasError('required')">
+        O usuário é <strong>obrigatório</strong>
+      </mat-error>
+    </mat-form-field>
 
-      <mat-form-field class="formfield">
-        <mat-label>Senha</mat-label>
-        <input type="password" matInput [formControl]="password">
-        <mat-error *ngIf="password.hasError('required')">
-          Senha é <strong>obrigatório</strong>
-        </mat-error>
-      </mat-form-field>
-      
-      <button class="button" mat-raised-button color="primary" (click)="login()">Login</button>
-    </form>
-  </div>
+    <mat-form-field class="formfield">
+      <mat-label>Senha</mat-label>
+      <input type="password" matInput [formControl]="password">
+      <mat-error *ngIf="password.hasError('required')">
+        Senha é <strong>obrigatório</strong>
+      </mat-error>
+    </mat-form-field>
+    
+    <button class="button" mat-raised-button color="primary" (click)="login()">Login</button>
+  </form>
 </div>

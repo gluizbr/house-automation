@@ -1,19 +1,36 @@
 import { HttpClient } from '@angular/common/http';
-import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs';
+import { Inject, Injectable } from '@angular/core';
+import { Observable, Subject } from 'rxjs';
+import { Environment, environmentProvider } from 'src/environments';
 import { AuthenticateResponse } from '../../models/authenticate-response.model';
 
 @Injectable({
   providedIn: 'root'
 })
 export class AuthenticateService {
-  url = 'https://6135f1ce0493.ngrok.io';
   
-  constructor(private readonly http: HttpClient) { }
+  private _loading$ = new Subject<boolean>();
+  get loading$(): Observable<boolean> {
+    return this._loading$.asObservable();
+  }
+
+  constructor(
+    @Inject(environmentProvider)
+    private readonly environment: Environment,
+    private readonly http: HttpClient
+  ) { }
 
   login(username: string, password: string): Observable<AuthenticateResponse> {
     const body = { username, password };
     
-    return this.http.post<AuthenticateResponse>(`${this.url}/api/authenticate`, body);
+    return this.http.post<AuthenticateResponse>(`${this.environment.url}/api/authenticate`, body);
+  }
+
+  IsLoading() {
+    this._loading$.next(true);
+  }
+
+  notLoading() {
+    this._loading$.next(false);
   }
 }
