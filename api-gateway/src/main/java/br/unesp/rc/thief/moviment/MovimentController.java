@@ -3,6 +3,7 @@ package br.unesp.rc.thief.moviment;
 import br.unesp.rc.model.thief.MovimentSensor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
@@ -13,6 +14,7 @@ import org.springframework.web.bind.annotation.RestController;
 import org.thymeleaf.util.StringUtils;
 
 @RestController
+@CrossOrigin(origins = "*", allowedHeaders = "*")
 @RequestMapping("/thief/moviment")
 public class MovimentController {
   private final MovimentService movimentService;
