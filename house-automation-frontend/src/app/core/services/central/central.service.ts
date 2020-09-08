@@ -1,11 +1,11 @@
 import { HttpClient } from '@angular/common/http';
 import { Inject, Injectable, OnDestroy } from '@angular/core';
-import { Observable, of } from 'rxjs';
-import { Subject, timer } from 'rxjs';
+import { Observable, Subject, timer, of } from 'rxjs';
 import { catchError, filter, retry, switchMap, takeUntil } from 'rxjs/operators';
 import { Environment, environmentProvider } from 'src/environments';
 import { Central } from '../../models/central.model';
-import { central } from 'src/assets/fixtures/central.fixture';
+import { central } from '../../../../assets/fixtures/central.fixture';
+import { ModalService } from '../modal/modal.service';
 
 @Injectable({
   providedIn: 'root'
@@ -28,7 +28,8 @@ export class CentralService implements OnDestroy{
   constructor(
     @Inject(environmentProvider)
     private readonly environment: Environment,
-    private readonly http: HttpClient
+    private readonly http: HttpClient,
+    private modalService: ModalService,
   ) {
       this._loading$.next(true);
 
@@ -40,17 +41,32 @@ export class CentralService implements OnDestroy{
         catchError((error) => { 
           this.stopPooling();
           this._loading$.next(false);
-          // return of(central);
-          throw error;
+          return of(central);
+          // throw error;
         })
       ).subscribe(
         (central: Central) => {
           this._loading$.next(false);
           this.storeInfo(central);
+
+          central.fireCentral.temperatureSensors
+            .forEach(sensor => 
+              this.modalService.openTemperatureSensorActivatedModalComponent(sensor)
+            );
+
+          central.fireCentral.smokeSensors
+            .forEach(sensor =>
+              this.modalService.openSmokeSensorActivatedModalComponent(sensor)
+            );
+          
+          central.thiefCentral.movimentSensors
+            .forEach(sensor => 
+              this.modalService.openMovimentSensorDetectedModalComponent(sensor)
+            );
         }
       )
   }
-  
+
   getInfo(): Observable<Central> {
     return this.http.get<Central>(`${this.environment.url}/api/central`)
   }

@@ -1,5 +1,5 @@
 import { Component, HostBinding, ViewEncapsulation } from '@angular/core';
-import { Observable, Subject } from 'rxjs';
+import { Observable } from 'rxjs';
 import { Central } from 'src/app/core/models/central.model';
 import { CentralService } from '../../../core/services';
 @Component({

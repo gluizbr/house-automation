@@ -21,7 +21,15 @@
     </ng-container>
     
     <ng-container *ngIf="central.thiefCentral.movimentSensors as movimentSensors">
-      <h3 class="title">Sensor Ladrão</h3>
+      <h3 class="title">
+        Sensor Ladrão
+        <button
+        class="button"
+        mat-raised-button color="primary"
+        (click)="activateThiefCentralAlarm()">
+          Ativar alarme
+        </button>
+      </h3>
       <app-moviment-sensor-control 
         class="sensor"
         *ngFor="let movimentSensor of movimentSensors"
@@ -32,14 +40,11 @@
 
 <!-- 
   TODO (10 points)
+  IDEIA: Para os modais não ficarem abrindo a cada replace dos dados, controla com uma variavel (ver whatsapp dual)
     - Test requests and feedbacks [1point]
     - Loading on first request data (set true outside the timer and if not false inside then false) [1point]
     - store (maybe) [3points]
     - include more info on the central page sensor "cards" (maybe previous temp or media temp, enphasis on the last time that the alarm was activated) [1point]
     - Modal with the message that some alarm has been activated (with some button to disable)[2points]
     - Loading on buttons [2points]
-    - Criar logica pra alarme de movimento
-      - Colocar um botão geral que vai ativar o alarme
-      - Ao ativar o alarme exibir um modal que vai falar que a partir de x tempo qualquer movimentação
-      - Ao ter um movimento nos sensores de movimento, dispara um modal que vai avisar o usuario que teve movimento (se ele deseja desativar o alarme ou não) 
 -->

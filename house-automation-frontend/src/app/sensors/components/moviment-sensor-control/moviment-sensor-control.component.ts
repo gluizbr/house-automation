@@ -27,6 +27,7 @@ export class MovimentSensorControlComponent {
     .subscribe(
       response => {
         this.sensorsService.showFeedback('Sensor de movimento modificado com sucesso!');
+        this.replaceSensorData(response);
         console.log(response);
       },
       error => {
@@ -34,5 +35,9 @@ export class MovimentSensorControlComponent {
         console.log(error);
       }
     );
+  }
+
+  replaceSensorData(newData: MovimentSensor) {
+    this.sensor = newData;
   }
 }

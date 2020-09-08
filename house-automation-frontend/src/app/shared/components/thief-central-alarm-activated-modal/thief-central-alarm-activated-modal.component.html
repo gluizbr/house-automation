@@ -1,0 +1,10 @@
+<h2 class="title" mat-dialog-title>Alarme de presença ativado</h2>
+
+<mat-dialog-content class="body">
+  <p>O alarme de presença foi ativado, caso aconteça algum movimento o alarme irá disparar. Você tem 5 minutos para sair</p>
+</mat-dialog-content>
+
+<mat-dialog-actions align="end">
+  <button mat-raised-button mat-dialog-close color="primary">Continuar</button>
+  <button mat-button (click)="deactivateAlarm()">Desativar Alarme</button>
+</mat-dialog-actions>

@@ -22,12 +22,12 @@ export class SensorsService {
     private snackBar: MatSnackBar
   ) { }
 
-  activateThiefAlarm(): Observable<{ activate: boolean }> {
-    return this.http.put<{ activate: boolean }>(`${this.environment.url}/api/thief/alarm/activate`, {});
+  activateThiefAlarm(): Observable<{ active: boolean }> {
+    return this.http.put<{ active: boolean }>(`${this.environment.url}/api/thief/alarm/activate`, {});
   }
 
-  deactivateThiefAlarm(): Observable<{ activate: boolean }> {
-    return this.http.put<{ activate: boolean }>(`${this.environment.url}/api/thief/alarm/deactivate`, {});
+  deactivateThiefAlarm(): Observable<{ active: boolean }> {
+    return this.http.put<{ active: boolean }>(`${this.environment.url}/api/thief/alarm/deactivate`, {});
   }
 
   changeMovimentSensorState(sensorId: string): Observable<MovimentSensor> {

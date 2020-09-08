@@ -42,6 +42,7 @@ export class TemperatureSensorControlComponent {
       .subscribe(
         response => {
           this.sensorsService.showFeedback('Temperatura modificada com sucesso');
+          this.replaceSensorData(response);
           console.log(response);
         },
         error => {
@@ -50,6 +51,10 @@ export class TemperatureSensorControlComponent {
         }
       );
     }
+  }
+  
+  replaceSensorData(newData: TemperatureSensor) {
+    this.sensor = newData;
   }
 
 }

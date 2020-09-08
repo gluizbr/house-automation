@@ -41,6 +41,7 @@ export class SmokeSensorControlComponent implements OnInit {
     .subscribe(
       response => {
         this.sensorsService.showFeedback(`Alarme ${this.control.value ? 'ativado' : 'desativado'} com sucesso`);
+        this.replaceSensorData(response);
         console.log(response);
       },
       error => {
@@ -48,5 +49,9 @@ export class SmokeSensorControlComponent implements OnInit {
         console.log(error);
       }
     );
+  }
+
+  replaceSensorData(newData: SmokeSensor) {
+    this.sensor = newData;
   }
 }
