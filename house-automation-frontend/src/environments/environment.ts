@@ -5,7 +5,7 @@ import { Environment } from './environment.model';
 
 export const environment: Environment = {
   production: false,
-  url: 'https://c7a14d85eec8.ngrok.io'
+  url: 'https://56890ff862a5.ngrok.io'
 };
 
 /*

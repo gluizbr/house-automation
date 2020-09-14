@@ -28,22 +28,20 @@ export const movimentSensor = {
 }
 
 export const fireCentral = {
-  smokeSensors: smokeSensors,
+  smokeSensors,
   temperatureSensors: [ temperatureSensor ],
-  fireman: false,
-  fire: false
+  fireman: true,
+  fire: true
 }
 
 export const thiefCentral = {
   movimentSensors: [ movimentSensor ],
-  callingCops: false,
+  callingCops: true,
   alarm: { active: true },
-  alarmState: AlarmState.Inactive
+  alarmState: null
 }
 
 export const central = {
   fireCentral,
   thiefCentral,
 }
-
-

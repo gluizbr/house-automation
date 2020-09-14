@@ -19,7 +19,7 @@ export class SmokeSensorControlComponent implements OnInit {
   sensor: SmokeSensor;
 
   form: FormGroup;
-  control = new FormControl(false, [ Validators.required ]);
+  control: FormControl;
 
   constructor(
     private sensorsService: SensorsService,
@@ -27,12 +27,16 @@ export class SmokeSensorControlComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
+    console.log('')
+
+    this.control = new FormControl(
+      this.sensor ? this.sensor.active : false, 
+      [ Validators.required ]
+    );
+
     this.form = this.fb.group({
-      control: [
-        this.sensor ? this.sensor.active : false,
-        [ Validators.required ]
-      ],
-    })
+      control: this.control,
+    });
   }
 
   changeSmokeSensorAlarm() {
@@ -41,7 +45,11 @@ export class SmokeSensorControlComponent implements OnInit {
     .subscribe(
       response => {
         this.sensorsService.showFeedback(`Alarme ${this.control.value ? 'ativado' : 'desativado'} com sucesso`);
-        this.replaceSensorData(response);
+
+        if (response) {
+          this.replaceSensorData(response);
+        }
+
         console.log(response);
       },
       error => {

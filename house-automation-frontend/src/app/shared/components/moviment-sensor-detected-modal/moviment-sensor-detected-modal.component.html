@@ -1,11 +1,11 @@
 <h2 class="title" mat-dialog-title>Movimento detectado</h2>
 
 <mat-dialog-content class="body">
-  <p>Foi detectado uma movimentação no sensor da {{ sensor.name }} às {{ this.sensor.lastEventTime | date: 'medium': 'pt-BR' }}</p>
-  <h3 class="highlight">Caso o alarme não seja desativado em 5 minutos a policia será assionada</h3>
+  O alarme de invasores detectou um movimento, caso o alarme não seja desativado ele irá disparar.
 </mat-dialog-content>
 
 <mat-dialog-actions align="end">
+  <button mat-button [mat-dialog-close]="true" cdkFocusInitial>Fechar</button>
   <button
     mat-raised-button
     color="primary"

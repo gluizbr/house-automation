@@ -1,0 +1,36 @@
+.app-alert {
+  align-items: center;
+  background-color: #ff645d;
+  border-radius: 7px;
+  box-shadow: 0 3px 1px -2px rgba(0,0,0,.2), 0 2px 2px 0 rgba(0,0,0,.14), 0 1px 5px 0 rgba(0,0,0,.12);
+  color: #fff;
+  column-gap: 16px;
+  display: grid;
+  grid-template-areas: "icon text emptyspace close";
+  grid-template-columns: auto auto 1fr auto;
+  padding: 8px 16px;
+  width: 100%;
+
+  & > .icon {
+    grid-area: icon;
+    font-size: 40px;
+    height: unset;
+    width: unset;
+  }
+
+  & > .close {
+    grid-area: close;
+  }
+
+  & > .close,
+  & > .icon {
+    color: white;
+  }
+
+  & > p {
+    font-size: 16px;
+    font-weight: 400;
+    grid-area: text;
+    margin: 0;
+  }
+}

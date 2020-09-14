@@ -2,29 +2,53 @@
   <span>Central</span>
 </mat-toolbar>
 <div class="container" *ngIf="(central$ | async) as central">
-  <ng-container *ngIf="central?.fireCentral as fireCentral">
-    <div *ngIf="fireCentral.smokeSensors" class="app-sensors-list">
-      <h3 class="title">Sensores de fumaça</h3>
-      <app-smoke-sensor
-        class="sensor"
-        *ngFor="let smokeSensor of fireCentral.smokeSensors"
-        [sensor]="smokeSensor"></app-smoke-sensor>
-    </div>
-    <div *ngIf="fireCentral.temperatureSensors" class="app-sensors-list">
-      <h3 class="title">Sensores de temperatura</h3>
-      <app-temperature-sensor
-        class="sensor"
-        *ngFor="let temperatureSensor of fireCentral.temperatureSensors"
-        [sensor]="temperatureSensor"></app-temperature-sensor>
-    </div>
-  </ng-container>
-  <ng-container *ngIf="central?.thiefCentral as thiefCentral">
-    <div *ngIf="thiefCentral.movimentSensors" class="app-sensors-list">
-      <h3 class="title">Sensores de movimento</h3>
-      <app-moviment-sensor
-        class="sensor"
-        *ngFor="let movimentSensor of thiefCentral.movimentSensors"
-        [sensor]="movimentSensor"></app-moviment-sensor>
-    </div>
-  </ng-container>
+  <div class="alertwrapper">
+    <app-alert class="alert" *ngIf="central.thiefCentral.alarmState === alarmStateEnum.Active">
+      <p>O alarme de invasores está ativado, caso algum movimento seja detectado ele será disparado.</p>
+    </app-alert>
+
+    <app-alert class="alert" *ngIf="central.thiefCentral.alarmState === alarmStateEnum.DetectedMovement">
+      <p>O alarme de invasores detectou um movimento, caso o alarme não seja desativado ele irá disparar.</p>
+    </app-alert>
+
+    <app-alert class="alert" *ngIf="central?.thiefCentral?.callingCops">
+      <p>A polícia foi acionada!</p>
+    </app-alert>
+
+    <app-alert class="alert" *ngIf="central?.fireCentral?.fireman">
+      <p>Os bombeiros foram chamados!</p>
+    </app-alert>
+
+    <app-alert class="alert" *ngIf="central?.fireCentral?.fire">
+      <p>Está pegando fogo!</p>
+    </app-alert>
+  </div>
+
+  <div class="sensorswrapper" *ngIf="central">
+    <ng-container *ngIf="central?.fireCentral as fireCentral">
+      <div *ngIf="fireCentral.smokeSensors" class="app-sensors-list">
+        <h3 class="title">Sensores de fumaça</h3>
+        <app-smoke-sensor
+          class="sensor"
+          *ngFor="let smokeSensor of fireCentral.smokeSensors"
+          [sensor]="smokeSensor"></app-smoke-sensor>
+      </div>
+      <div *ngIf="fireCentral.temperatureSensors" class="app-sensors-list">
+        <h3 class="title">Sensores de temperatura</h3>
+        <app-temperature-sensor
+          class="sensor"
+          *ngFor="let temperatureSensor of fireCentral.temperatureSensors"
+          [sensor]="temperatureSensor"></app-temperature-sensor>
+      </div>
+    </ng-container>
+    <ng-container *ngIf="central?.thiefCentral as thiefCentral">
+      <div *ngIf="thiefCentral.movimentSensors" class="app-sensors-list">
+        <h3 class="title">Sensores de movimento</h3>
+        <app-moviment-sensor
+          class="sensor"
+          *ngFor="let movimentSensor of thiefCentral.movimentSensors"
+          [sensor]="movimentSensor"></app-moviment-sensor>
+      </div>
+    </ng-container>
+  </div>
 </div>

@@ -1,16 +1,17 @@
-<form class="container" [formGroup]="form">
+<form class="container" [formGroup]="form" *ngIf="sensor">
   <h3 class="name">{{ sensor.name }}</h3>
   <mat-slider
   class="control"
   thumbLabel
   tickInterval="1"
   min="0"
-  max="30"
+  max="50"
+  [value]="sensor.temperature"
   [formControl]="temperature"></mat-slider>
 
-  <h4 class="currentvalue">{{ temperature.value }}</h4>
-  
-  <button class="button" 
+  <h4 class="currentvalue">{{ form.controls.value }}</h4>
+
+  <button class="button"
   mat-raised-button color="primary"
   (click)="changeTemperature()">Alterar Temperatura</button>
 </form>

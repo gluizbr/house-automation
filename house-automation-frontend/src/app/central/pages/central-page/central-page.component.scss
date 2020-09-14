@@ -1,10 +1,17 @@
-@import './sensors-list.scss';
-
 .app-central-page {
-  & > .container {
+  & > .container > .alertwrapper {
+    margin-top: 50px;
+    display: grid;
+    row-gap: 20px;
+  }
+
+  & > .container > .alertwrapper > .alert:last-child {
+    margin-bottom: 50px;
+  }
+
+  & > .container > .sensorswrapper {
     column-gap: 40px;
     display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    margin-top: 50px;
+    grid-template-columns: repeat(3, 1fr)
   }
 }

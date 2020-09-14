@@ -24,24 +24,53 @@ export class SensorsPageComponent {
     this.centralService.central$
     .pipe(take(1))
     .subscribe(central => {
+      console.log(central);
       this.central = central;
     })
   }
 
-  activateThiefCentralAlarm() {
-    this.sensorsService.activateThiefAlarm()
-    .pipe(take(1))
-    .subscribe(
-      (response) => {
-        this.sensorsService.showFeedback('Alarme ativado com sucesso!');
-        this.modalService.openThiefCentralAlarmActivatedModal(true);
-        this.replaceThiefCentralData(response);
-      },
-      (error) => {
-        this.sensorsService.showFeedback('Ocorreu um erro interno, tente novamente mais tarde!');
-        console.log(error);
-      }
-    );
+  changeThiefCentralAlarmState(active: boolean) {
+    if (active) {
+      this.sensorsService.deactivateThiefAlarm()
+        .pipe(take(1))
+        .subscribe(
+          (response) => {
+            this.sensorsService.showFeedback('Alarme desativado com sucesso!');
+
+            // this.modalService.openThiefCentralAlarmActivatedModal(true);
+
+            if (response) {
+              this.replaceThiefCentralData(response);
+            }
+
+            console.log(response);
+          },
+          (error) => {
+            this.sensorsService.showFeedback('Ocorreu um erro interno, tente novamente mais tarde!');
+            console.log(error);
+          }
+        );
+    } else {
+      this.sensorsService.activateThiefAlarm()
+      .pipe(take(1))
+      .subscribe(
+        (response) => {
+          this.sensorsService.showFeedback('Alarme ativado com sucesso!');
+
+          // this.modalService.openThiefCentralAlarmActivatedModal(true);
+
+          if (response) {
+            this.replaceThiefCentralData(response);
+          }
+
+          console.log(response);
+        },
+        (error) => {
+          this.sensorsService.showFeedback('Ocorreu um erro interno, tente novamente mais tarde!');
+          console.log(error);
+        }
+      );
+    }
   }
 
   replaceThiefCentralData(alarm: { active: boolean }) {

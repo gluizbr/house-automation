@@ -1,8 +1,8 @@
-import { Component, OnInit, ViewEncapsulation, Inject, HostBinding } from '@angular/core';
-import { SensorsService } from 'src/app/core/services';
-import { take } from 'rxjs/operators';
+import { Component, HostBinding, Inject, ViewEncapsulation } from '@angular/core';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
+import { take } from 'rxjs/operators';
 import { MovimentSensor } from 'src/app/core/models/central.model';
+import { SensorsService } from 'src/app/core/services/sensors/sensors.service';
 
 @Component({
   selector: 'app-moviment-sensor-detected-modal',

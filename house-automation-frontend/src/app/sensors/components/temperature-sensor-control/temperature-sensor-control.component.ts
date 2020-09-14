@@ -19,7 +19,8 @@ export class TemperatureSensorControlComponent {
   sensor: TemperatureSensor;
 
   form: FormGroup;
-  temperature = new FormControl();
+
+  temperature: FormControl;
 
   constructor(
     private sensorsService: SensorsService,
@@ -27,22 +28,28 @@ export class TemperatureSensorControlComponent {
   ) { }
 
   ngOnInit(): void {
+    console.log(this.sensor);
+    this.temperature = new FormControl(
+      this.sensor ? this.sensor.temperature : 0,
+      [ Validators.required ]
+    )
     this.form = this.fb.group({
-      temperature: [
-        this.sensor ? this.sensor.temperature : false,
-        [ Validators.required ]
-      ]
+      temperature: this.temperature
     });
   }
 
   changeTemperature() {
     if(this.form.valid) {
-      this.sensorsService.changeTemperatureSensor(this.sensor.id, this.temperature.value)
+      this.sensorsService.changeTemperatureSensor(this.sensor.id, this.form.controls.temperature.value)
       .pipe(take(1))
       .subscribe(
         response => {
           this.sensorsService.showFeedback('Temperatura modificada com sucesso');
-          this.replaceSensorData(response);
+
+          if (response) {
+            this.replaceSensorData(response);
+          }
+
           console.log(response);
         },
         error => {
@@ -52,7 +59,7 @@ export class TemperatureSensorControlComponent {
       );
     }
   }
-  
+
   replaceSensorData(newData: TemperatureSensor) {
     this.sensor = newData;
   }

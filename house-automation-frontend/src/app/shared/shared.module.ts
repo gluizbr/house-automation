@@ -1,16 +1,23 @@
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 import { MatButtonModule } from '@angular/material/button';
-import { MatToolbarModule } from '@angular/material/toolbar';
-import { MovimentSensorDetectedModalComponent, TemperatureSensorActivatedModalComponent, ThiefCentralAlarmActivatedModalComponent } from './components';
 import { MatDialogModule } from '@angular/material/dialog';
-import { SmokeSensorActivatedModalComponent } from './components/smoke-sensor-activated-modal/smoke-sensor-activated-modal.component';
+import { MatToolbarModule } from '@angular/material/toolbar';
+import {
+  CallingCoopsModalComponent,
+  FiremanModalComponent,
+  MovimentSensorDetectedModalComponent,
+  ThiefCentralAlarmActivatedModalComponent,
+  FireModalComponent
+} from './components';
 
 @NgModule({
   declarations: [
-    TemperatureSensorActivatedModalComponent, 
-    MovimentSensorDetectedModalComponent, 
-    ThiefCentralAlarmActivatedModalComponent, SmokeSensorActivatedModalComponent,
+    MovimentSensorDetectedModalComponent,
+    ThiefCentralAlarmActivatedModalComponent,
+    FiremanModalComponent,
+    CallingCoopsModalComponent,
+    FireModalComponent,
   ],
   imports: [
     CommonModule,
@@ -22,8 +29,7 @@ import { SmokeSensorActivatedModalComponent } from './components/smoke-sensor-ac
     MatButtonModule,
     MatToolbarModule,
     MatDialogModule,
-    TemperatureSensorActivatedModalComponent, 
-    MovimentSensorDetectedModalComponent, 
+    MovimentSensorDetectedModalComponent,
     ThiefCentralAlarmActivatedModalComponent,
   ]
 })

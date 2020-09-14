@@ -1,66 +1,89 @@
 import { Injectable } from '@angular/core';
-import { ThiefCentralAlarmActivatedModalComponent, TemperatureSensorActivatedModalComponent, MovimentSensorDetectedModalComponent } from 'src/app/shared/components';
-import { SmokeSensorActivatedModalComponent } from 'src/app/shared/components/smoke-sensor-activated-modal/smoke-sensor-activated-modal.component';
+import {
+  ThiefCentralAlarmActivatedModalComponent,
+  MovimentSensorDetectedModalComponent,
+  FiremanModalComponent,
+  FireModalComponent,
+  CallingCoopsModalComponent
+} from '../../../shared/components';
 import { MatDialog } from '@angular/material/dialog';
 import { TemperatureSensor, MovimentSensor, SmokeSensor } from '../../models/central.model';
+import { AlarmState } from '../../enums/alarm-state.enum';
 
 @Injectable({
   providedIn: 'root'
 })
 export class ModalService {
-  previousMovimentSensorDetectedState: { [key: string]: Date };
 
-  previousSmokeSensorActivatedState: { [key: string]: boolean };
+  previousCallingCoopsState: boolean;
 
-  previousTemperatureSensorActivatedState: { [key: string]: number };
+  previousFireState: boolean;
 
-  previousThiefCentralAlarmActivatedState: boolean;
+  previousFiremanState: boolean;
+
+  previousThiefCentralAlarmState: AlarmState;
 
   constructor(private modal: MatDialog) { }
 
-  openMovimentSensorDetectedModalComponent(movimentSensor: MovimentSensor): void {
-    const previousState = this.previousMovimentSensorDetectedState[movimentSensor.id];
-
-    if(previousState !== movimentSensor.lastEventTime) {
-      this.modal.open(MovimentSensorDetectedModalComponent, {
-        data: movimentSensor
-      });
-
-      this.previousMovimentSensorDetectedState[movimentSensor.id] = movimentSensor.lastEventTime;
+  openCallingCoopsModalComponent(callingCoops: boolean): void {
+    if (this.previousCallingCoopsState === undefined) {
+      this.previousCallingCoopsState = callingCoops;
+      return;
     }
 
-  }
+    if (this.previousCallingCoopsState !== callingCoops) {
+      if (callingCoops) {
+        this.modal.open(CallingCoopsModalComponent);
+      }
 
-  openSmokeSensorActivatedModalComponent(smokeSensor: SmokeSensor): void {
-    const previousState = this.previousSmokeSensorActivatedState[smokeSensor.id];
-
-    if(previousState !== smokeSensor.active) {
-      this.modal.open(SmokeSensorActivatedModalComponent, {
-        data: smokeSensor
-      });
-
-      this.previousSmokeSensorActivatedState[smokeSensor.id] = smokeSensor.active;
-    }
-
-  }
-
-  openTemperatureSensorActivatedModalComponent(temperatureSensor: TemperatureSensor): void {
-    const previousState = this.previousTemperatureSensorActivatedState[temperatureSensor.id];
-
-    if(previousState !== temperatureSensor.temperature) {
-      this.modal.open(TemperatureSensorActivatedModalComponent, {
-        data: temperatureSensor
-      });
-
-      this.previousTemperatureSensorActivatedState[temperatureSensor.id] = temperatureSensor.temperature;
+      this.previousCallingCoopsState = callingCoops;
     }
   }
 
-  openThiefCentralAlarmActivatedModal(thiefCentralAlarm: boolean): void {
-    if(this.previousThiefCentralAlarmActivatedState !== thiefCentralAlarm) {
-      this.modal.open(ThiefCentralAlarmActivatedModalComponent);
+  openFireModalComponent(fire: boolean): void {
+    if (this.previousFireState === undefined) {
+      this.previousFireState = fire;
+      return;
+    }
 
-      this.previousThiefCentralAlarmActivatedState = thiefCentralAlarm;
+    if (this.previousFireState !== fire) {
+      if (fire) {
+        this.modal.open(FireModalComponent);
+      }
+
+      this.previousFireState = fire;
+    }
+  }
+
+  openFiremanModalComponent(fireman: boolean): void {
+    if (this.previousFiremanState === undefined) {
+      this.previousFiremanState = fireman;
+      return;
+    }
+
+    if (this.previousFiremanState !== fireman) {
+      if (fireman) {
+        this.modal.open(FiremanModalComponent);
+      }
+
+      this.previousFiremanState = fireman;
+    }
+  }
+
+  openThiefCentralAlarmStateModals(alarmState: AlarmState): void {
+    if (this.previousThiefCentralAlarmState === undefined) {
+      this.previousThiefCentralAlarmState = alarmState;
+      return;
+    }
+
+    if (this.previousThiefCentralAlarmState !== alarmState) {
+      if (alarmState === AlarmState.Active) {
+        this.modal.open(ThiefCentralAlarmActivatedModalComponent);
+      } else if (alarmState === AlarmState.DetectedMovement) {
+        this.modal.open(MovimentSensorDetectedModalComponent);
+      }
+
+      this.previousThiefCentralAlarmState = alarmState;
     }
   }
 
