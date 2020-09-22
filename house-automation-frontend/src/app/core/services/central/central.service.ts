@@ -23,7 +23,7 @@ export class CentralService {
   }
 
   private stopPooling$: Subject<void> = new Subject();
-  timer = timer(0, 7000);
+  timer = timer(0, 1000);
 
   constructor(
     @Inject(environmentProvider)

@@ -1,0 +1,42 @@
+/target/**
+/api-gateway/target/**
+/fire-alarm/target/**
+/thief-alarm/target/**
+/common/target/**
+*!.mvn/wrapper/maven-wrapper.jar
+*.jar
+.circleci
+
+### STS ###
+.apt_generated
+.classpath
+.factorypath
+.project
+.settings
+.springBeans
+.sts4-cache
+
+### IntelliJ IDEA ###
+.idea
+*.iws
+*.iml
+*.ipr
+
+### Certificates ###
+*.p12
+*.pem
+*.crt
+*.jks
+*.keystore
+*.der
+*.pkcs8
+*.cer
+
+*.json.tml
+
+### Logs ###
+*.log
+*.gz
+
+### python venv ###
+.venv
