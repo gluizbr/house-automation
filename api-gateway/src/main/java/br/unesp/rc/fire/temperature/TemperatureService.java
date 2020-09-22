@@ -28,7 +28,7 @@ public class TemperatureService {
   public TemperatureSensor update(String temperatureId, Long temperature) {
     ResponseEntity response = requestClient.putRequest(buildTemperatureUpdateUrl(temperatureId, temperature),
         null, TemperatureSensor.class);
-    return null;
+    return (TemperatureSensor) response.getBody();
   }
 
   private String buildTemperatureUpdateUrl(String temperatureId, Long temperature) {
