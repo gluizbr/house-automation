@@ -4,7 +4,7 @@
 <div class="container" *ngIf="(central$ | async) as central">
   <div class="alertwrapper">
     <app-alert class="alert" *ngIf="central.thiefCentral.alarmState === alarmStateEnum.Active">
-      <p>O alarme de invasores está ativado, caso algum movimento seja detectado ele será disparado.</p>
+      <p>O alarme está disparado, caso não seja desativado a policia será acionada.</p>
     </app-alert>
 
     <app-alert class="alert" *ngIf="central.thiefCentral.alarmState === alarmStateEnum.DetectedMovement">
