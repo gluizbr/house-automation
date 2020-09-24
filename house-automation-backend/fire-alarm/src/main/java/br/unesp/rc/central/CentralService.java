@@ -14,8 +14,8 @@ import java.util.List;
 @Service
 public class CentralService {
   private static final long FIRE_TEMPERATURE = 50;
-  private static final long FIRE_TIME = 20L;
-  private static final long CALL_FIRE_DEPARTMENT = 30L;
+  private static final long FIRE_TIME = 1L;
+  private static final long CALL_FIRE_DEPARTMENT = 10L;
 
   private final SmokeService smokeService;
   private final TemperatureService temperatureService;

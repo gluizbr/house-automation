@@ -12,12 +12,16 @@ export class TemperatureSensorComponent implements OnInit {
   @HostBinding('class.app-temperature-sensor')
   hostClass = true;
 
+  @HostBinding('class.-active')
+  hostClassActive: boolean;
+
   @Input()
   sensor: TemperatureSensor;
 
   constructor() { }
 
   ngOnInit(): void {
+    this.hostClassActive = this.sensor.temperature >= 50;
   }
 
 }

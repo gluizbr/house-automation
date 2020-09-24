@@ -12,11 +12,15 @@ export class MovimentSensorComponent implements OnInit {
   @HostBinding('class.app-moviment-sensor')
   hostClass = true;
 
+  @HostBinding('class.-active')
+  hostClassActive: boolean;
+
   @Input()
   sensor: MovimentSensor;
 
   constructor() { }
 
   ngOnInit(): void {
+    this.hostClassActive = !!this.sensor.lastEventTime;
   }
 }

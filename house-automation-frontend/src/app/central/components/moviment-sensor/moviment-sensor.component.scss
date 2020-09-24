@@ -9,4 +9,17 @@
     color: rgba(0, 0, 0, 0.55);
     display: block;
   }
+
+  /* Variants */
+  &.-active {
+    background-color: red;
+
+    & > .name {
+      color: white;
+    }
+
+    & > .lastEventTime {
+      color: white;
+    }
+  }
 }

@@ -9,4 +9,17 @@
   & > .temperature {
     margin-bottom: 0;
   }
+
+  /* Variants */
+  &.-active {
+    background-color: red;
+
+    & > .name {
+      color: white;
+    }
+
+    & > .temperature {
+      color: white;
+    }
+  }
 }

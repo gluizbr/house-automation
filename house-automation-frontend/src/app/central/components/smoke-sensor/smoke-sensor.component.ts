@@ -20,7 +20,7 @@ export class SmokeSensorComponent implements OnInit {
   constructor() { }
 
   ngOnInit(): void {
-    this.hostClassActive = this.sensor.active
+    this.hostClassActive = this.sensor.active;
   }
 
 }
